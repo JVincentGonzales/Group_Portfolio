@@ -1,0 +1,460 @@
+:root {
+  --first-color: #ff6ec7;
+  --text-color: #d1d1d1;
+  --bg-dark: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --font: 'Poppins', sans-serif;
+
+  /* Light Theme Variables */
+  --light-bg: #f9f9f9;
+  --light-text: #1a1a1a;
+  --light-card: #ffffff;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-dark);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ======== NAVIGATION ======== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* logo on left, links+button on right */
+  align-items: center;
+  padding: 1.2rem 3rem;
+  background-color: var(--bg-card);
+  box-shadow: 0 0 15px rgba(255, 110, 199, 0.3);
+  z-index: 1000;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* New group for links + theme button */
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* space between links and button */
+}
+
+/* Navigation links */
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem; /* slightly tighter gap */
+  margin: 0;
+}
+
+.nav__links a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.nav__links a:hover {
+  color: var(--first-color);
+}
+
+.logo {
+  color: var(--first-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+
+/* THEME BUTTON */
+#theme-button {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s, transform 0.3s;
+}
+
+#theme-button:hover {
+  color: var(--first-color);
+  transform: rotate(20deg);
+}
+
+/* When in light mode */
+body.light-theme #theme-button {
+  color: black;
+}
+
+@media (max-width: 600px) {
+  .nav {
+    flex-direction: row;           /* keep items in one line */
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;          /* smaller padding */
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav__links {
+    gap: 1rem;
+  }
+
+  .nav__right {
+    gap: 1rem;
+  }
+}
+.hero {
+  margin-top: 80px;
+  padding: 6rem 8% 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+
+.hero__content {
+  flex: 1 1 400px;
+  max-width: 500px;
+  z-index: 2;
+}
+
+.hero__content h2 {
+  font-size: 1.5rem;
+  color: var(--first-color);
+}
+
+.hero__content h1 {
+  font-size: 2.5rem;
+  color: white;
+  margin: 10px 0;
+}
+
+.hero__content p {
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+
+.btn {
+  background: var(--first-color);
+  color: black;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: white;
+}
+
+/* ======== SLIDER ======== */
+.hero__slider {
+  flex: 1 1 400px;
+  position: relative;
+  width: 100%;
+  max-width: 450px; /* keeps it from stretching too wide */
+  min-height: 300px; /* ensures it never disappears */
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 30px rgba(255, 110, 199, 0.6);
+}
+
+.hero__slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 1.5rem;
+}
+
+.slide {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.fade {
+  animation: fadeEffect 2s;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+/* ======== MOBILE VIEW ======== */
+@media (max-width: 768px) {
+  .hero__slider {
+    max-width: 100%;    /* fill available width */
+    min-height: 40vh;   /* stays visible even on small screens */
+    margin-top: 2rem;   /* spacing below text content */
+  }
+}
+/* ======== DESKTOP VIEW (wider slider) ======== */
+@media (min-width: 992px) {
+  .hero__slider {
+    max-width: 500px;   /* a bit wider on large screens */
+    min-height: 500px;  /* taller to match the old 400px+ look */
+  }
+}
+
+
+/* ======== TEAM ======== */
+.team {
+  padding: 4rem 8%;
+  text-align: center;
+}
+
+.section__title {
+  color: var(--first-color);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.team__container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.person__card {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 230px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transition: 0.3s;
+  border: 1.5px solid var(--first-color);
+  box-shadow: 0 0 15px rgba(255, 110, 199, 0.2);
+  overflow: hidden;
+}
+
+.person__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(255, 110, 199, 0.5);
+}
+
+.person__img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.person__name {
+  color: var(--first-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.person__role {
+  color: white;
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+}
+
+.person__strength {
+  font-size: 0.8rem;
+  color: #b8b8b8;
+  margin-bottom: 0.8rem;
+}
+
+.person__rating {
+  color: gold;
+}
+
+.person__link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s;
+}
+
+.person__link:hover .person__card {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px rgba(255, 110, 199, 0.7);
+}
+
+/* ======== FOOTER ======== */
+.footer {
+  background: linear-gradient(135deg, #2b0030, #5b0045, #000);
+  color: #f8f8f8;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(255, 110, 199, 0.3);
+  transition: background 0.3s, color 0.3s;
+}
+
+.footer__logo {
+  color: var(--first-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.footer__links a {
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.footer__links a:hover {
+  color: var(--first-color);
+}
+
+.footer__socials {
+  margin-bottom: 1rem;
+}
+
+.footer__socials a {
+  color: #fff;
+  margin: 0 8px;
+  font-size: 1.3rem;
+  transition: 0.3s;
+}
+
+.footer__socials a:hover {
+  color: var(--first-color);
+}
+
+.footer__copy {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero__slider {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    margin-top: 100px;   /* adds extra space below fixed nav on small screens */
+  }
+}
+
+/* ======== LIGHT THEME ======== */
+body.light-theme {
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+
+/* Navigation */
+.light-theme .nav {
+  background-color: var(--light-card);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .logo {
+  color: var(--first-color);
+}
+
+.light-theme .nav__links a {
+  color: var(--light-text);
+}
+
+.light-theme .nav__links a:hover {
+  color: var(--first-color);
+}
+
+/* Hero section */
+.light-theme .hero__content h1,
+.light-theme .hero__content p {
+  color: var(--light-text);
+}
+
+.light-theme .hero__content h2 {
+  color: var(--first-color)
+}
+
+.light-theme .btn {
+  background: var(--first-color);
+  color: white;
+}
+
+.light-theme .btn:hover {
+  background: var(--light-text);
+  color: var(--first-color);
+}
+
+/* Team cards */
+.light-theme .person__card {
+  background: #ffd6eb;
+  color: var(--light-text);
+  border-color: var(--first-color);
+  box-shadow: 0 0 12px rgba(255, 110, 199, 0.3); /* pink glow */
+}
+
+/* ======== LIGHT THEME FOOTER ======== */
+.light-theme .footer {
+  background: linear-gradient(135deg, #ff6ec7, #ffd6eb); /* pink gradient */
+  color: #222;
+  border-top: 1px solid rgba(255, 110, 199, 0.3);
+  box-shadow: 0 -4px 20px rgba(255, 110, 199, 0.25); /* soft glow */
+  transition: background 0.3s, color 0.3s;
+}
+
+.light-theme .footer__logo {
+  color: var(--first-color);
+}
+
+.light-theme .footer__links a,
+.light-theme .footer__socials a {
+  color: #333;
+  transition: color 0.3s;
+}
+
+.light-theme .footer__links a:hover,
+.light-theme .footer__socials a:hover {
+  color: var(--first-color);
+}
+
+.light-theme .footer__copy {
+  color: #555; 
+}
+
+/* Make card text readable in light mode */
+.light-theme .person__role {
+  color: #333;
+}
+
+.light-theme .person__strength {
+  color: #555; 
+}
+
+.person__rating {
+  color: #E6A100; 
